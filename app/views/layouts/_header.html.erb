@@ -6,7 +6,9 @@
     </ul>
     <ul class="right">
         <% if current_user %>
-            <li><%= link_to current_user.name, current_user %>
+            <li><%= link_to current_user.name, current_user %></li>
+            <li><%= link_to 'Account Settings', edit_user_path(current_user) %>
+            <li><%= link_to 'Logout', session_path, method: :delete, class: "button" %>
         <% else %>
             <li><%= link_to 'Sign In', signin_path, class: "button" %>
             <li><%= link_to 'Sign Up', signup_path, class: "button" %></li>
