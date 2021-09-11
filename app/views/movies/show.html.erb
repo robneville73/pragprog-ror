@@ -10,6 +10,12 @@
     <div class="reviews">
       <%= render 'shared/stars', percent: @movie.average_stars_as_percent %>
       <%= link_to pluralize(@movie.reviews.size - 1, 'Reviews'), movie_reviews_path(@movie) %>
+      <div class="faves">
+        <%= favorite_button(@movie, current_user) %>
+        <div class="count">
+          <%= @fans.size %>
+        </div>
+      </div>
     </div>
     <p>
       <%= @movie.description %>

@@ -27,9 +27,15 @@ private
         current_user && current_user.admin?
     end
 
+    def user_already_faved?(movie, user)
+        movie.favorites.find_by(user: user)
+    end
+
     helper_method :current_user
 
     helper_method :current_user?
 
     helper_method :current_user_admin?
+
+    helper_method :user_already_faved?
 end
