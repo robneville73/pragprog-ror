@@ -2,19 +2,13 @@
 <ul class="reviews">
   <% @reviews.each do |review| %>
     <li>
-      <%= render 'shared/stars', percent: review.stars_as_percent %>
-      <p>
-        <%= review.name %>
-        <span class="date">
-          <%= time_ago_in_words(review.created_at) %> ago
-        </span>
-      </p>
-      <p>
-        <%= review.comment %>
-      </p>
-      <p>
-        <%= link_to 'Edit', edit_movie_review_path(@movie,review) %>
-        <%= link_to 'Delete', movie_review_path(@movie, review), method: :delete, data: { confirm: "Are you sure?"} %>
+      <%= render 'review', review: review %>
+      <% if current_user && current_user?(review.user) %>
+        <p>
+          <%= link_to 'Edit', edit_movie_review_path(@movie,review) %>
+          <%= link_to 'Delete', movie_review_path(@movie, review), method: :delete, data: { confirm: "Are you sure?"} %>
+        </p>
+      <% end %>
     </li>
   <% end %>
 </ul>
