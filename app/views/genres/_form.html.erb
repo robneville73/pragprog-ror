@@ -1,0 +1,10 @@
+<%= form_with(model: object, local: true) do |f| %>
+  
+  <%= render 'shared/errors', object: object %>
+
+  <%= f.label :name, autofocus: true %>
+  <%= f.text_field :name %>
+
+  <%= f.submit %>
+
+<% end %>

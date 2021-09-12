@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
 
-  resources :genres
   root "movies#index"
 
   resources :movies do
@@ -9,6 +8,7 @@ Rails.application.routes.draw do
   end
 
   resources :users
+  resources :genres
 
   resource :session, only: [:new, :create, :destroy]
 
