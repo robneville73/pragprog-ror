@@ -46,7 +46,7 @@ class MoviesController < ApplicationController
 private
 
     def fetch_movie
-        @movie = Movie.find(params[:id])
+        @movie = Movie.find_by!(slug: params[:id])
     end
 
     def movie_params

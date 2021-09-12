@@ -11,7 +11,10 @@ class Movie < ApplicationRecord
     has_many :characterizations, dependent: :destroy
     has_many :genres, through: :characterizations
 
-    validates :title, :released_on, :duration, presence: true
+    before_save :set_slug
+
+    validates :released_on, :duration, presence: true
+    validates :title, presence: true, uniqueness: true
 
     validates :description, length: { minimum: 25 }
 
@@ -42,6 +45,16 @@ class Movie < ApplicationRecord
 
     def average_stars_as_percent
         (average_stars / 5.0) * 100.0
+    end
+
+    def to_param
+        slug
+    end
+
+private
+
+    def set_slug
+        self.slug = title.parameterize
     end
 
 end
